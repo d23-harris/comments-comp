@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline, Container, ThemeProvider, createTheme } from '@mui/material';
+import CommentSystem from './components/comments/CommentSystem';
+
+const theme = createTheme();
+
+const initialComments = [
+  {
+    id: '1',
+    text: 'This is the first comment',
+    user: 'user-abc',
+    children: [
+      {
+        id: '2',
+        text: 'This is a reply to the first comment',
+        user: 'user-123',
+        children: [],
+      },
+    ],
+  },
+  {
+    id: '3',
+    text: 'This is another top-level comment',
+    user: 'user-efg',
+    children: [],
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container maxWidth="md">
+      <CommentSystem initialComments={initialComments} />
+      </Container>
+    </ThemeProvider>
   );
 }
 
