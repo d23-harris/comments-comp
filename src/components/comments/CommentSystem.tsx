@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
-import { Comment } from './types';
+import { Comment } from '../../types/CommentTypes';
 import CommentComponent from './CommentsView';
 
-import { CommentSystemProps } from './types'
+import { CommentSystemProps } from '../../types/CommentTypes'
 
 
 const CommentSystem = ({ initialComments }: CommentSystemProps) => {
   const [comments, setComments] = useState<Comment[]>(initialComments);
 
-  const handleReply = (parentId: string, text: string) => {
+  const handleReply = useCallback((parentId: string, text: string) => {
     const newComment: Comment = {
       id: Date.now().toString(),
       text,
@@ -30,7 +30,7 @@ const CommentSystem = ({ initialComments }: CommentSystemProps) => {
     };
 
     setComments(prevComments => addReply(prevComments));
-  }
+  }, [])
 
   return (
     <Box>

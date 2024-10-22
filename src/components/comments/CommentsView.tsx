@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { Box, Typography, Button, List, ListItem, TextField } from '@mui/material';
-import { CommentProps } from './types';
+import { CommentProps } from '../../types/CommentTypes';
 
-const CommentComponent = (({ comment, onReply }: CommentProps) => {
+const CommentComponent = memo(({ comment, onReply }: CommentProps) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [replyText, setReplyText] = useState('');
 
-    const toggleExpanded = () => {
+    const toggleExpanded = useCallback(() => {
         setIsExpanded(prevToggle => !prevToggle);
-    }
+    }, [])
 
-    const handleReply = () => {
+    const handleReply = useCallback(() => {
         if (replyText.trim()) {
             onReply(comment.id, replyText);
             setReplyText('');
         }
-    }
+    }, [])
 
     return (
         <div style={{ border: "0.5px solid black" }}>
