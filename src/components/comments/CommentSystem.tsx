@@ -1,12 +1,24 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import { Comment } from '../../types/CommentTypes';
 import CommentComponent from './CommentsView';
+import { fetchComments } from './CommentsAPI';
 
-import { CommentSystemProps } from '../../types/CommentTypes'
+const CommentSystem = () => {
+  const [comments, setComments] = useState<Comment[]>([]);
 
-const CommentSystem = ({ initialComments }: CommentSystemProps) => {
-  const [comments, setComments] = useState<Comment[]>(initialComments);
+  useEffect(() => {
+    const loadInitialComments = async () => {
+      try {
+        const comments = await fetchComments();
+        setComments(comments);
+      } catch (error) {
+        console.error('Error loading initial comments:', error);
+      }
+    };
+    loadInitialComments();
+  }, []);
+
 
   const handleReply = useCallback((parentId: string, text: string) => {
     const newComment: Comment = {
