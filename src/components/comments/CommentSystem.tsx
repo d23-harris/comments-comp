@@ -5,7 +5,6 @@ import CommentComponent from './CommentsView';
 
 import { CommentSystemProps } from '../../types/CommentTypes'
 
-
 const CommentSystem = ({ initialComments }: CommentSystemProps) => {
   const [comments, setComments] = useState<Comment[]>(initialComments);
 

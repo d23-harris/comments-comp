@@ -15,7 +15,7 @@ const CommentComponent = memo(({ comment, onReply }: CommentProps) => {
             onReply(comment.id, replyText);
             setReplyText('');
         }
-    }, [])
+    }, [comment.id, replyText, onReply]);
 
     return (
         <div style={{ border: "0.5px solid black" }}>
