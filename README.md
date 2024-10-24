@@ -17,3 +17,9 @@ A component for handling nested comments/replies
     - Handles individual comment rendering and replies
     - Local state for UI interactions
     - Props: comment object and onAddReply callback
+
+
+## Additional 
+- use npm run generate-comments. 
+    - to improve loading of data when depth > 10 with > 3 similar lever depth comments
+    
