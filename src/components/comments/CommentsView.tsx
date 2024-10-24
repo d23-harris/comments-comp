@@ -18,7 +18,8 @@ const CommentComponent = memo(({ comment, onReply }: CommentProps) => {
     }, [comment.id, replyText, onReply]);
 
     return (
-        <div style={{ border: "0.5px solid black" }}>
+        // <div style={{ border: "0.5px solid black" }}>
+        <div>
             <Box sx={{ mb: 2 }}>
                 <Typography variant="caption">By: {comment.user}</Typography>
                 <Typography variant="body1">{comment.text}</Typography>

@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import { Comment } from '../../types/CommentTypes';
 import CommentComponent from './CommentsView';
-import { fetchComments } from './CommentsAPI';
+import { fetchComments } from '../api/CommentsAPI';
 
 const CommentSystem = () => {
   const [comments, setComments] = useState<Comment[]>([]);
